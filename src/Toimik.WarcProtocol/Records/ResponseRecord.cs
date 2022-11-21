@@ -190,8 +190,10 @@ namespace Toimik.WarcProtocol
             }
             else
             {
-                RecordBlock = Encoding.UTF8.GetString(contentBlock[0..index]);
-                Payload = contentBlock[(index + (WarcParser.CrLf.Length * 2))..];
+                RecordBlock = Encoding.UTF8.GetString(contentBlock, 0, index);
+                index += WarcParser.CrLf.Length * 2;
+                Payload = new byte[contentBlock.Length - index];
+                Array.Copy(contentBlock, index, Payload, 0, Payload.Length);
             }
 
             ContentBlock = contentBlock;

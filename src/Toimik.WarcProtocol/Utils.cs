@@ -55,7 +55,7 @@ namespace Toimik.WarcProtocol
                  * continued value for the last read field
                  */
 
-                var isValueForPreviousField = line.StartsWith(' ')
+                var isValueForPreviousField = line.StartsWith(" ")
                     || line.StartsWith("\\t");
                 if (isValueForPreviousField)
                 {
@@ -163,7 +163,7 @@ namespace Toimik.WarcProtocol
         internal static Uri RemoveBracketsFromUri(string value)
         {
             // Extract the uri within the angle brackets '<' ... '>'
-            var content = value.StartsWith('<') && value.EndsWith('>')
+            var content = value.StartsWith("<") && value.EndsWith(">")
                 ? value[1..^1]
                 : value;
             return new Uri(content);
@@ -174,7 +174,7 @@ namespace Toimik.WarcProtocol
             var i = 0;
             while (i < value.Length)
             {
-                if (value.StartsWith(' '))
+                if (value.StartsWith(" "))
                 {
                     value = value[1..];
                     i++;

@@ -46,7 +46,7 @@ namespace Toimik.WarcProtocol
             // NOTE: This is naively done because seek is unsupported by the underlying class
             for (long i = 0; i < byteOffset; i++)
             {
-                var readCount = await Stream.ReadAsync(buffer: (new byte[1]).AsMemory(start: 0, length: 1));
+                var readCount = await Stream.ReadAsync(new byte[1], 0, 1);
                 var isEofEncountered = readCount == 0;
                 if (isEofEncountered)
                 {
@@ -63,7 +63,7 @@ namespace Toimik.WarcProtocol
             {
                 CancellationToken.ThrowIfCancellationRequested();
                 var buffer = new byte[1];
-                var readCount = await Stream.ReadAsync(buffer.AsMemory(start: 0, length: 1));
+                var readCount = await Stream.ReadAsync(buffer, 0, 1);
                 var isEofEncountered = readCount == 0;
                 if (isEofEncountered)
                 {

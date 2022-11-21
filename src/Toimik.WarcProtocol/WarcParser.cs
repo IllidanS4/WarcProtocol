@@ -255,7 +255,7 @@ namespace Toimik.WarcProtocol
             while (!hasReadAllData)
             {
                 lineReader.CancellationToken.ThrowIfCancellationRequested();
-                readCount = await lineReader.Stream.ReadAsync(contentBlock.AsMemory(readCount, remainder));
+                readCount = await lineReader.Stream.ReadAsync(contentBlock, readCount, remainder);
                 var isEofEncountered = readCount == 0;
                 remainder -= readCount;
                 hasReadAllData = remainder == 0;
